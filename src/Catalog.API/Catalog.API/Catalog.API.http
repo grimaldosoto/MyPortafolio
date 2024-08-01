@@ -1,10 +1,9 @@
-﻿@hostname=localhost
-@port=7078
-@host={{hostname}}:{{port}}
+﻿@Catalog.API_HostAdress=http://localhost:5025
+@ApiVersion = 1.0
 
-# CRUD Tecnhology
-#--------------- CREATE ---------------
-POST  https://{{host}}/api/technology/create
+### CRUD Tecnhology
+###--------------- CREATE ---------------
+POST  https://{{Catalog.API_HostAdress}}/api/technology/create
 Content-Type: application/json
 
 {
@@ -15,7 +14,7 @@ Content-Type: application/json
 
 ###--------------- READ ---------------
 // Filtro Base
-POST  https://{{host}}/api/technology
+POST  https://{{Catalog.API_HostAdress}}/api/technology
 Content-Type: application/json
 
 {
@@ -34,7 +33,7 @@ Content-Type: application/json
 ###
 
 // filtro 1
-POST  https://{{host}}/api/technology
+POST  https://{{Catalog.API_HostAdress}}/api/technology
 Content-Type: application/json
 
 {
@@ -45,7 +44,7 @@ Content-Type: application/json
 }
 ###
 // filtro 2 // numFilter: 1 = nombre ; 2 = descripción
-POST  https://{{host}}/api/technology
+POST  https://{{Catalog.API_HostAdress}}/api/technology
 Content-Type: application/json
 
 {
@@ -55,7 +54,7 @@ Content-Type: application/json
 
 ###--------------- UPDATE ---------------
 @UpdateTechnologyId = 1
-PUT  https://{{host}}/api/technology/update/{{UpdateTechnologyId}}
+PUT  https://{{Catalog.API_HostAdress}}/api/technology/update/{{UpdateTechnologyId}}
 Content-Type: application/json
 
 {
@@ -66,11 +65,11 @@ Content-Type: application/json
 
 ###--------------- DElETE ---------------
 @DeleteTechnologyId = 4
-DELETE  https://{{host}}/api/technology/delete/{{DeleteTechnologyId}}
+DELETE  https://{{Catalog.API_HostAdress}}/api/technology/delete/{{DeleteTechnologyId}}
 
 ###--------------- SELECT ---------------
-GET  https://{{host}}/api/technology/select
+GET  https://{{Catalog.API_HostAdress}}/api/technology/select
 
 ###--------------- READ BY ID ---------------
-GET  https://{{host}}/api/technology/1
+GET  https://{{Catalog.API_HostAdress}}/api/technology/1
 
