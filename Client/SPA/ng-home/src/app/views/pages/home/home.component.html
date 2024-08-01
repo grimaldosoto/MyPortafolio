@@ -1,0 +1,52 @@
+<section class="about section" style="padding-bottom: 0px;">
+  <div class="containers grid">
+    <h1 class="about__title">
+      Hola,<br>Soy Web<span class="about__title-color"> Developer</span><br>
+    </h1>
+    <div class="about__content">
+      <a href="https://www.linkedin.com/in/grimaldosoto" target="_blank" class="button">Cont&aacute;ctame</a>
+    </div>
+    <p style="text-align: center">
+      Backend Developer | .NET, Angular, Typescript
+    </p>
+  </div>
+  <div class="about__container containers grid">
+
+    <article class="about__img" data-sr-id="2" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -48, 0, 1); transition: opacity 2s cubic-bezier(0.5, 0, 0, 1) 0.4s, transform 2s cubic-bezier(0.5, 0, 0, 1) 0.4s;">
+
+      <img alt="img" class="box" width="100%" height="100%" src="https://avatars.githubusercontent.com/u/118828231?v=4">
+
+      <div class="about__social" style="justify-content: center; margin: 1rem 0 0 0;">
+        <a href="https://twitter.com/gsotocuya" target="_blank" class="about__social-icon" data-sr-id="22" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: opacity 2s cubic-bezier(0.5, 0, 0, 1) 0.2s, transform 2s cubic-bezier(0.5, 0, 0, 1) 0.2s;"><i class="bx bxl-twitter"></i></a>
+        <a href="https://github.com/grimaldosoto" class="about__social-icon" data-sr-id="23" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: opacity 2s cubic-bezier(0.5, 0, 0, 1) 0.2s, transform 2s cubic-bezier(0.5, 0, 0, 1) 0.2s;"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/grimaldosoto" class="about__social-icon" data-sr-id="24" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: opacity 2s cubic-bezier(0.5, 0, 0, 1) 0.2s, transform 2s cubic-bezier(0.5, 0, 0, 1) 0.2s;"><i class="bx bxl-linkedin-square"></i></a>
+      </div>
+    </article>
+
+    <div class="about__content" *ngIf="phrase">
+      <span style="font-weight: bold">Frase del d&iacute;a:
+        {{phrase.Date}}</span> <br>
+      <p>{{phrase.Content}}
+
+      <span style="font-style: italic">{{phrase.Publish}}
+        {{phrase.Author}}</span></p>
+
+      <div>
+        <a href="https://github.com/grimaldosoto/phrase-of-the-day" class="nav__logo">
+          <i class="bx bxl-github" style="font-size: 2em;"></i>
+        </a>
+
+        <div class="about__social">
+           <!--a href="" rel="nofollow"-->
+          <img src="https://img.shields.io/badge/PhraseOfTheDay_%20-1.0-orange" alt="Angular version" style="max-width: 100%;">
+        <!--/a-->
+        <!--a href="" rel="nofollow"-->
+          <img src="https://img.shields.io/badge/.NET_%20-6.0-blue" alt="Angular version" style="max-width: 100%;">
+        <!--/a-->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

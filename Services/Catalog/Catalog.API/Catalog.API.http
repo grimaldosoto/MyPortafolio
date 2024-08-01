@@ -1,0 +1,76 @@
+﻿@hostname=localhost
+@port=7078
+@host={{hostname}}:{{port}}
+
+# CRUD Tecnhology
+#--------------- CREATE ---------------
+POST  https://{{host}}/api/technology/create
+Content-Type: application/json
+
+{
+  "name": "TypeSCript",
+  "version": "string",
+  "description": "string"
+}
+
+###--------------- READ ---------------
+// Filtro Base
+POST  https://{{host}}/api/technology
+Content-Type: application/json
+
+{
+  "numPage": 0,
+  "numRecordsPage": 0,
+  "order": "string",
+  "sort": "string",
+  "records": 0,
+  "numFilter": 0,
+  "textFilter": "string",
+  "stateFilter": 0,
+  "startDate": "string",
+  "endDate": "string",
+  "download": true
+}
+###
+
+// filtro 1
+POST  https://{{host}}/api/technology
+Content-Type: application/json
+
+{
+  "numPage": 1,
+  "numRecordsPage": 10,
+  "order": "asc",
+  "sort": "Id"
+}
+###
+// filtro 2 // numFilter: 1 = nombre ; 2 = descripción
+POST  https://{{host}}/api/technology
+Content-Type: application/json
+
+{
+  "numFilter": 1, 
+  "textFilter": "s"
+}
+
+###--------------- UPDATE ---------------
+@UpdateTechnologyId = 1
+PUT  https://{{host}}/api/technology/update/{{UpdateTechnologyId}}
+Content-Type: application/json
+
+{
+  "name": "ACtualiz",
+  "version": "string",
+  "description": "string"
+}
+
+###--------------- DElETE ---------------
+@DeleteTechnologyId = 4
+DELETE  https://{{host}}/api/technology/delete/{{DeleteTechnologyId}}
+
+###--------------- SELECT ---------------
+GET  https://{{host}}/api/technology/select
+
+###--------------- READ BY ID ---------------
+GET  https://{{host}}/api/technology/1
+
