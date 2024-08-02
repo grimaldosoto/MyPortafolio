@@ -72,7 +72,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSPA", "src\WebSPA\", "{9
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "62095"
+		SlnRelativePath = "src\WebSPA\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.MSTest", "Catalog.MSTest\Catalog.MSTest.csproj", "{10B909FD-4C2D-4AAB-9515-ACB86C297B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +119,10 @@ Global
 		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +140,7 @@ Global
 		{5C62E359-C6F5-491C-8BE4-3A2FF6C77215} = {F5E499A2-1C33-4434-AE48-E2A142D4627E}
 		{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7} = {1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}
 		{9D8EA42B-B800-49AD-8980-74CB063BDFDD} = {AFB83238-3FEB-4591-A53D-78EA9B85194B}
+		{10B909FD-4C2D-4AAB-9515-ACB86C297B35} = {1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9434EC9-4DA4-45A4-8FF3-2D8AD92B73EA}
