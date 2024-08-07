@@ -52,30 +52,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSPA", "src\WebSPA\", "{5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.UnitTests", "tests\Catalog.UnitTests\Catalog.UnitTests.csproj", "{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.UnitTests", "tests\Catalog.UnitTests\Catalog.UnitTests.csproj", "{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSPA", "src\WebSPA\", "{9D8EA42B-B800-49AD-8980-74CB063BDFDD}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_62095"
-		Debug.AspNetCompiler.PhysicalPath = "src\WebSPA\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62095\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_62095"
-		Release.AspNetCompiler.PhysicalPath = "src\WebSPA\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62095\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "62095"
-		SlnRelativePath = "src\WebSPA\"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.MSTest", "Catalog.MSTest\Catalog.MSTest.csproj", "{10B909FD-4C2D-4AAB-9515-ACB86C297B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.MSTest", "Catalog.MSTest\Catalog.MSTest.csproj", "{10B909FD-4C2D-4AAB-9515-ACB86C297B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,10 +94,6 @@ Global
 		{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D8EA42B-B800-49AD-8980-74CB063BDFDD}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B909FD-4C2D-4AAB-9515-ACB86C297B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -139,7 +114,6 @@ Global
 		{F5E499A2-1C33-4434-AE48-E2A142D4627E} = {AFB83238-3FEB-4591-A53D-78EA9B85194B}
 		{5C62E359-C6F5-491C-8BE4-3A2FF6C77215} = {F5E499A2-1C33-4434-AE48-E2A142D4627E}
 		{20DFE59E-8DA7-4BBA-A70F-8F7AA1C4E7B7} = {1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}
-		{9D8EA42B-B800-49AD-8980-74CB063BDFDD} = {AFB83238-3FEB-4591-A53D-78EA9B85194B}
 		{10B909FD-4C2D-4AAB-9515-ACB86C297B35} = {1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
