@@ -1,6 +1,4 @@
 ﻿using Catalog.Application.Commons.Bases;
-using Catalog.Application.Dtos.Request;
-using Catalog.Application.Dtos.Response;
 using Catalog.Application.Interfaces;
 using Catalog.Application.Validators.Technology;
 using AutoMapper;
@@ -9,6 +7,8 @@ using Catalog.Infrastructure.Commons.Bases.Request;
 using Catalog.Infrastructure.Commons.Bases.Response;
 using Catalog.Infrastructure.Persistences.Interfaces;
 using Catalog.Utilities.Static;
+using Catalog.Application.Dtos.Category.Request;
+using Catalog.Application.Dtos.Category.Response;
 
 namespace Catalog.Application.Services
 {

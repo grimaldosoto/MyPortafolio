@@ -1,13 +1,8 @@
 ﻿using Catalog.Application.Commons.Bases;
-using Catalog.Application.Dtos.Request;
-using Catalog.Application.Dtos.Response;
+using Catalog.Application.Dtos.Category.Request;
+using Catalog.Application.Dtos.Category.Response;
 using Catalog.Infrastructure.Commons.Bases.Request;
 using Catalog.Infrastructure.Commons.Bases.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catalog.Application.Interfaces
 {

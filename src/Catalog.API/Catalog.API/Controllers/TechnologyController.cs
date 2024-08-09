@@ -1,4 +1,4 @@
-﻿using Catalog.Application.Dtos.Request;
+﻿using Catalog.Application.Dtos.Category.Request;
 using Catalog.Application.Interfaces;
 using Catalog.Infrastructure.Commons.Bases.Request;
 using Microsoft.AspNetCore.Mvc;

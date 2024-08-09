@@ -48,6 +48,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSPA", "src\WebSPA\", "{5
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "62095"
+		SlnRelativePath = "src\WebSPA\"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1951DCBE-E01B-4CF5-BB1D-200B9FBB72E1}"

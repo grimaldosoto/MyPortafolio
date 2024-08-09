@@ -1,8 +1,8 @@
-﻿using Catalog.Application.Dtos.Request;
-using Catalog.Application.Dtos.Response;
-using AutoMapper;
+﻿using AutoMapper;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Commons.Bases.Response;
+using Catalog.Application.Dtos.Category.Request;
+using Catalog.Application.Dtos.Category.Response;
 
 namespace Catalog.Application.Mappers
 {

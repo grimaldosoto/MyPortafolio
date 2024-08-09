@@ -7,11 +7,13 @@ namespace Catalog.Infrastructure.Persistences.Repositories
     {
         private readonly MyPortaLiveContext _context;
         public ITechnologyRepository Technology { get; private set; }
+        public IUserRepository User { get; private set; }
 
         public UnitOfWork(MyPortaLiveContext context)
         {
             _context = context;
             Technology = new TechnologyRepository(_context);
+            User = new UserRepository(_context);
         }
 
         public void Dispose()

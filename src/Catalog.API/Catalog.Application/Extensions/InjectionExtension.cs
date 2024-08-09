@@ -24,6 +24,7 @@ namespace Catalog.Application.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<ITechnologyApplication, TechnologyApplication>();
+            services.AddScoped<IUserApplication,UserApplication>();
             
             return services;
         }
