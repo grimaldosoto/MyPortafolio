@@ -1,10 +1,12 @@
 ﻿using Catalog.Application.Dtos.Category.Request;
 using Catalog.Application.Interfaces;
 using Catalog.Infrastructure.Commons.Bases.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Home.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TechnologyController : ControllerBase
