@@ -19,7 +19,7 @@ namespace Catalog.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("Create")]
-        public async Task<IActionResult> CreateUser([FromBody] UserRequestDto requestDto)
+        public async Task<IActionResult> CreateUser([FromForm] UserRequestDto requestDto)
         {
             return Ok(await _userApplication.CreateUser(requestDto));
         }
