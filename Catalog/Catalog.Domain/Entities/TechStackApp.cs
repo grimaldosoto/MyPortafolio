@@ -1,8 +1,7 @@
 ﻿namespace Catalog.Domain.Entities
 {
-    public partial class TechStackApp
+    public partial class TechStackApp : BaseEntity
     {
-        public int TechStackAppId { get; set; }
         public int AppId { get; set; }
         public int TechnologyId { get; set; }
 

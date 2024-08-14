@@ -25,6 +25,7 @@ namespace Catalog.Application.Extensions
 
             services.AddScoped<ITechnologyApplication, TechnologyApplication>();
             services.AddScoped<IUserApplication,UserApplication>();
+            services.AddScoped<ITechStackAppApplication, TechStackAppApplication>();
             
             return services;
         }

@@ -11,6 +11,7 @@ namespace Catalog.Infrastructure.Persistences.Repositories
         public ITechnologyRepository Technology { get; private set; }
         public IUserRepository User { get; private set; }
         public IAzureStorage Storage { get; private set; }
+        public ITechStackAppRepository TechStackApp { get; private set; }
 
         public UnitOfWork(MyPortaLiveContext context, IConfiguration configuration)
         {
@@ -18,6 +19,7 @@ namespace Catalog.Infrastructure.Persistences.Repositories
             Technology = new TechnologyRepository(_context);
             User = new UserRepository(_context);
             Storage = new AzureStorage(configuration);
+            TechStackApp = new TechStackAppReporitory(_context);
         }
 
         public void Dispose()

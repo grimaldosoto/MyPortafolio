@@ -10,7 +10,8 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
         {
             builder.ToTable("TechStackApp", "MyPortafolio");
 
-            builder.Property(e => e.TechStackAppId).HasColumnName("TechStackAppID");
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).HasColumnName("TechStackAppID");
 
             builder.Property(e => e.AppId).HasColumnName("AppID");
 

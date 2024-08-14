@@ -8,6 +8,7 @@ namespace Catalog.Infrastructure.Persistences.Interfaces
         ITechnologyRepository Technology {  get; }
         IUserRepository User { get; }
         IAzureStorage Storage { get; }
+        ITechStackAppRepository TechStackApp { get; }
         void SaveChanges();
         Task SaveChangesAsync();
     }

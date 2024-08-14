@@ -15,7 +15,7 @@ namespace Catalog.Infrastructure.Persistences.Repositories
         {
             var response = new BaseEntityResponse<Technology>();
 
-            var technologies = GetEntityQuery();
+            var technologies = GetEntityQuery().AsNoTracking();
             
             // ==> Filtros
             // Filtro por Nombre o Descripción
