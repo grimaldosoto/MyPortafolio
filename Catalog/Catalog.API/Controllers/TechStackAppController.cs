@@ -36,5 +36,16 @@ namespace Catalog.API.Controllers
         {
             return Ok(await _techStackAppApplication.CreateTechStachApp(requestDto));
         }
+
+        [HttpPut("Update/{techStackAppId:int}")]
+        public async Task<IActionResult> UpdateTechStackApp(int techStackAppId, [FromBody] TechStackAppRequestDto requestDto)
+        {
+            return Ok(await _techStackAppApplication.UpdateTechStackApp(techStackAppId, requestDto));   
+        }
+        [HttpDelete("Delete/{techStackAppId:int}")]
+        public async Task<IActionResult> DeleteTechStackApp(int techStackAppId)
+        {
+            return Ok(await _techStackAppApplication.DeleteTechStackApp(techStackAppId));
+        }
     }
 }

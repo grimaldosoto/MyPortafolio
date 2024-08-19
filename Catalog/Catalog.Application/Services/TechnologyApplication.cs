@@ -81,6 +81,8 @@ namespace Catalog.Application.Services
             {
                 response.IsSuccess = false;
                 response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+
+                return response;
             }
 
             var technology = _mapper.Map<Technology>(requestDto);

@@ -43,6 +43,37 @@ namespace Catalog.Application.Services
             
         }
 
+        public async Task<BaseResponse<bool>> DeleteTechStackApp(int techStackAppId)
+        {
+            var response = new BaseResponse<bool>();
+
+            var techStackAppById = await TechStackAppById(techStackAppId);
+
+            if (techStackAppById.Data is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+
+                return response;
+
+            }
+
+            response.Data = await _unitOfWork.TechStackApp.DeleteAsync(techStackAppId);
+
+            if (response.Data)
+            {
+                response.IsSuccess = true;
+                response.Message = ReplyMessage.MESSAGE_DELETE;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessage.MESSAGE_FAILED;
+            }
+            return response;
+
+        }
+
         public async Task<BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>> ListTechStackApps(BaseFiltersRequest filters)
         {
             var response = new BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>();
@@ -81,6 +112,37 @@ namespace Catalog.Application.Services
             }
 
             return response;
+        }
+
+        public async Task<BaseResponse<bool>> UpdateTechStackApp(int techStackAppId, TechStackAppRequestDto requestDto)
+        {
+            var response = new BaseResponse<bool>();
+            var techStackAppById = await TechStackAppById(techStackAppId);
+
+            if (techStackAppById.Data is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                
+                return response;
+
+            }
+            var techStackApp = _mapper.Map<TechStackApp>(requestDto);
+            techStackApp.Id = techStackAppId;
+            response.Data = await _unitOfWork.TechStackApp.UpdateAsync(techStackApp);
+
+            if (response.Data)
+            {
+                response.IsSuccess = true;
+                response.Message = ReplyMessage.MESSAGE_UPDATE;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessage.MESSAGE_FAILED;
+            }
+            return response;
+
         }
     }
 }
