@@ -1,6 +1,7 @@
 using Catalog.API.Extensions;
 using Catalog.Application.Extensions;
 using Catalog.Infrastructure.Extensions;
+using WatchDog;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseWatchDogExceptionLogger();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -46,6 +49,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseWatchDog(config =>
+{
+    config.WatchPageUsername = configuration.GetSection("WatchDog:Username").Value;
+    config.WatchPagePassword = configuration.GetSection("WatchDog:Password").Value;
+});
 
 app.Run();
 

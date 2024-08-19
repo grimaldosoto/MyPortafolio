@@ -8,6 +8,7 @@ using Catalog.Infrastructure.Commons.Bases.Request;
 using Catalog.Infrastructure.Commons.Bases.Response;
 using Catalog.Infrastructure.Persistences.Interfaces;
 using Catalog.Utilities.Static;
+using WatchDog;
 
 namespace Catalog.Application.Services
 {
@@ -25,70 +26,97 @@ namespace Catalog.Application.Services
         public async Task<BaseResponse<bool>> CreateTechStachApp(TechStackAppRequestDto requestDto)
         {
             var response = new BaseResponse<bool>();
-            var techStackApp = _mapper.Map<TechStackApp>(requestDto);
 
-            response.Data = await _unitOfWork.TechStackApp.CreateAsync(techStackApp);
-
-            if (response.Data)
+            try
             {
-                response.IsSuccess = true;
-                response.Message = ReplyMessage.MESSAGE_CREATE;
+                var techStackApp = _mapper.Map<TechStackApp>(requestDto);
+                response.Data = await _unitOfWork.TechStackApp.CreateAsync(techStackApp);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = ReplyMessage.MESSAGE_CREATE;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_FAILED;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_FAILED;
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
+
             return response;
-            
         }
 
         public async Task<BaseResponse<bool>> DeleteTechStackApp(int techStackAppId)
         {
             var response = new BaseResponse<bool>();
 
-            var techStackAppById = await TechStackAppById(techStackAppId);
+            try
+            {
+                var techStackAppById = await TechStackAppById(techStackAppId);
 
-            if (techStackAppById.Data is null)
+                if (techStackAppById.Data is null)
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+
+                    return response;
+                }
+
+                response.Data = await _unitOfWork.TechStackApp.DeleteAsync(techStackAppId);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = ReplyMessage.MESSAGE_DELETE;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_FAILED;
+                }
+            }
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
-
-                return response;
-
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
 
-            response.Data = await _unitOfWork.TechStackApp.DeleteAsync(techStackAppId);
-
-            if (response.Data)
-            {
-                response.IsSuccess = true;
-                response.Message = ReplyMessage.MESSAGE_DELETE;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_FAILED;
-            }
             return response;
-
         }
 
         public async Task<BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>> ListTechStackApps(BaseFiltersRequest filters)
         {
             var response = new BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>();
-            var techStackApps = await _unitOfWork.TechStackApp.ListTechStackApps(filters);
 
-            if(techStackApps is not null)
+            try
             {
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<BaseEntityResponse<TechStackAppResponseDto>>(techStackApps);
-                response.Message = ReplyMessage.MESSAGE_QUERY;
+                var techStackApps = await _unitOfWork.TechStackApp.ListTechStackApps(filters);
+
+                if (techStackApps is not null)
+                {
+                    response.IsSuccess = true;
+                    response.Data = _mapper.Map<BaseEntityResponse<TechStackAppResponseDto>>(techStackApps);
+                    response.Message = ReplyMessage.MESSAGE_QUERY;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
 
             return response;
@@ -97,18 +125,28 @@ namespace Catalog.Application.Services
         public async Task<BaseResponse<TechStackAppResponseDto>> TechStackAppById(int techStackAppId)
         {
             var response = new BaseResponse<TechStackAppResponseDto>();
-            var techStackApp = await _unitOfWork.TechStackApp.GetByIdAsync(techStackAppId);
 
-            if (techStackApp is not null)
+            try
             {
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<TechStackAppResponseDto>(techStackApp);
-                response.Message = ReplyMessage.MESSAGE_QUERY;
+                var techStackApp = await _unitOfWork.TechStackApp.GetByIdAsync(techStackAppId);
+
+                if (techStackApp is not null)
+                {
+                    response.IsSuccess = true;
+                    response.Data = _mapper.Map<TechStackAppResponseDto>(techStackApp);
+                    response.Message = ReplyMessage.MESSAGE_QUERY;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
 
             return response;
@@ -117,32 +155,42 @@ namespace Catalog.Application.Services
         public async Task<BaseResponse<bool>> UpdateTechStackApp(int techStackAppId, TechStackAppRequestDto requestDto)
         {
             var response = new BaseResponse<bool>();
-            var techStackAppById = await TechStackAppById(techStackAppId);
 
-            if (techStackAppById.Data is null)
+            try
+            {
+                var techStackAppById = await TechStackAppById(techStackAppId);
+
+                if (techStackAppById.Data is null)
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+
+                    return response;
+
+                }
+                var techStackApp = _mapper.Map<TechStackApp>(requestDto);
+                techStackApp.Id = techStackAppId;
+                response.Data = await _unitOfWork.TechStackApp.UpdateAsync(techStackApp);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = ReplyMessage.MESSAGE_UPDATE;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_FAILED;
+                }
+            }
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
-                
-                return response;
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
+            }
 
-            }
-            var techStackApp = _mapper.Map<TechStackApp>(requestDto);
-            techStackApp.Id = techStackAppId;
-            response.Data = await _unitOfWork.TechStackApp.UpdateAsync(techStackApp);
-
-            if (response.Data)
-            {
-                response.IsSuccess = true;
-                response.Message = ReplyMessage.MESSAGE_UPDATE;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_FAILED;
-            }
             return response;
-
         }
     }
 }

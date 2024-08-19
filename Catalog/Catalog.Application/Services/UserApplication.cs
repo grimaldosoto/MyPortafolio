@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using WatchDog;
 
 namespace Catalog.Application.Services
 {
@@ -26,32 +27,37 @@ namespace Catalog.Application.Services
             _configuration = configuration;
         }
 
-
         public async Task<BaseResponse<bool>> CreateUser(UserRequestDto requestDto)
         {
             var response = new BaseResponse<bool>();
-            var account = _mapper.Map<User>(requestDto);
-
-            account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
-
-            if(requestDto.Image is not null)
+            try
             {
-                account.Image = await _unitOfWork.Storage.SaveFile(AzureContainers.USERS, requestDto.Image);
+                var account = _mapper.Map<User>(requestDto);
+                account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
+
+                if (requestDto.Image is not null)
+                {
+                    account.Image = await _unitOfWork.Storage.SaveFile(AzureContainers.USERS, requestDto.Image);
+                }
+
+                response.Data = await _unitOfWork.User.CreateAsync(account);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = ReplyMessage.MESSAGE_CREATE;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_FAILED;
+                }
             }
-
-            response.Data = await _unitOfWork.User.CreateAsync(account);
-
-            if (response.Data)
-            {
-                response.IsSuccess = true;
-                response.Message = ReplyMessage.MESSAGE_CREATE;
-
-            }
-            else
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_FAILED;
-
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
 
             return response;
@@ -60,24 +66,35 @@ namespace Catalog.Application.Services
         public async Task<BaseResponse<string>> GenerateToken(TokenRequestDto requestDto)
         {
             var response = new BaseResponse<string>();
-            var account = await _unitOfWork.User.AccountByUserName(requestDto.UserName!);
 
-            if(account is not null)
+            try
             {
-                if(BCrypt.Net.BCrypt.Verify(requestDto.Password, account.Password))
+                var account = await _unitOfWork.User.AccountByUserName(requestDto.UserName!);
+
+                if (account is not null)
                 {
-                    response.IsSuccess = true;
-                    response.Data = GenerateToken(account);
-                    response.Message = ReplyMessage.MESSAGE_TOKEN;
-                    
-                    return response;
+                    if (BCrypt.Net.BCrypt.Verify(requestDto.Password, account.Password))
+                    {
+                        response.IsSuccess = true;
+                        response.Data = GenerateToken(account);
+                        response.Message = ReplyMessage.MESSAGE_TOKEN;
+
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessage.MESSAGE_TOKEN_ERROR;
                 }
             }
-            else
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_TOKEN_ERROR;
+                response.Message = ReplyMessage.MESSAGE_EXCEPTION;
+                WatchLogger.Log(ex.Message);
             }
+
             return response;
         }
 
@@ -85,13 +102,13 @@ namespace Catalog.Application.Services
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]));
 
-            var credentials = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, user.Email),
-                new Claim(JwtRegisteredClaimNames.FamilyName, user.UserName),
-                new Claim(JwtRegisteredClaimNames.NameId, user.Email),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Email !),
+                new Claim(JwtRegisteredClaimNames.FamilyName, user.UserName !),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Email !),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, Guid.NewGuid().ToString(), ClaimValueTypes.Integer64)

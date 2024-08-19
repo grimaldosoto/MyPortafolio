@@ -1,4 +1,5 @@
-﻿using Catalog.Application.Interfaces;
+﻿using Catalog.Application.Extensions.WatchDog;
+using Catalog.Application.Interfaces;
 using Catalog.Application.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,7 @@ namespace Catalog.Application.Extensions
             });
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddWatchDog(configuration);
 
             services.AddScoped<ITechnologyApplication, TechnologyApplication>();
             services.AddScoped<IUserApplication,UserApplication>();

@@ -16,6 +16,7 @@ Package NuGet: Application
 	- AutoMapper.Extensions.Microsoft.DependencyInjection
 	- Azure.Storage.Blobs
 	- BCrypt.Net-Next
+	- WatchDog.NET
 
 
 Package NuGet: API
