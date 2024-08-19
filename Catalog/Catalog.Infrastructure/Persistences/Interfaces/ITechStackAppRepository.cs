@@ -4,7 +4,7 @@ using Catalog.Infrastructure.Commons.Bases.Response;
 
 namespace Catalog.Infrastructure.Persistences.Interfaces
 {
-    public interface ITechStackAppRepository
+    public interface ITechStackAppRepository : IGenericRepository<TechStackApp>
     {
         Task<BaseEntityResponse<TechStackApp>> ListTechStackApps(BaseFiltersRequest filters);
     }

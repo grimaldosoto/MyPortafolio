@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Application.Dtos.TechStackApp
+namespace Catalog.Application.Dtos.TechStackApp.Response
 {
     public class TechStackAppResponseDto
     {
