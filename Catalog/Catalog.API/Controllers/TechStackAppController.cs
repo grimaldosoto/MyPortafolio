@@ -1,8 +1,7 @@
 ﻿using Catalog.Application.Dtos.TechStackApp.Request;
 using Catalog.Application.Interfaces;
 using Catalog.Infrastructure.Commons.Bases.Request;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using Catalog.Utilities.Static;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
@@ -13,16 +12,27 @@ namespace Catalog.API.Controllers
     public class TechStackAppController : ControllerBase
     {
         private readonly ITechStackAppApplication _techStackAppApplication;
+        private readonly IGenerateExcelApplication _generateExcelApplication;
 
-        public TechStackAppController(ITechStackAppApplication techStackAppApplication)
+        public TechStackAppController(ITechStackAppApplication techStackAppApplication, IGenerateExcelApplication generateExcelApplication)
         {
             _techStackAppApplication = techStackAppApplication;
+            _generateExcelApplication = generateExcelApplication;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ListTechStackApps([FromBody] BaseFiltersRequest filters)
-        {
-            return Ok(await _techStackAppApplication.ListTechStackApps(filters));
+        [HttpGet]
+        public async Task<IActionResult> ListTechStackApps([FromQuery] BaseFiltersRequest filters)
+           {
+            var response = await _techStackAppApplication.ListTechStackApps(filters);
+
+            if ((bool)filters.Download!)
+            {
+                var columnNames = ExcelColumnNames.GetColumnTechStackApp();
+                var fileBytes = _generateExcelApplication.GenerateToExcel(response.Data!, columnNames);
+
+                return File(fileBytes, ContentType.ContentTypeExcel);
+            }
+            return Ok(response);
         }
 
         [HttpGet("{techStackAppId:int}")]

@@ -23,9 +23,9 @@ namespace Catalog.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<bool>> CreateTechStachApp(TechStackAppRequestDto requestDto)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> CreateTechStachApp(TechStackAppRequestDto requestDto)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {
@@ -53,9 +53,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<bool>> DeleteTechStackApp(int techStackAppId)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> DeleteTechStackApp(int techStackAppId)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {
@@ -92,9 +92,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>> ListTechStackApps(BaseFiltersRequest filters)
+        public async Task<Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechStackAppResponseDto>>> ListTechStackApps(BaseFiltersRequest filters)
         {
-            var response = new BaseResponse<BaseEntityResponse<TechStackAppResponseDto>>();
+            var response = new Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechStackAppResponseDto>>();
 
             try
             {
@@ -103,7 +103,7 @@ namespace Catalog.Application.Services
                 if (techStackApps is not null)
                 {
                     response.IsSuccess = true;
-                    response.Data = _mapper.Map<BaseEntityResponse<TechStackAppResponseDto>>(techStackApps);
+                    response.Data = _mapper.Map<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechStackAppResponseDto>>(techStackApps);
                     response.Message = ReplyMessage.MESSAGE_QUERY;
                 }
                 else
@@ -122,9 +122,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<TechStackAppResponseDto>> TechStackAppById(int techStackAppId)
+        public async Task<Commons.Bases.BaseEntityResponse<TechStackAppResponseDto>> TechStackAppById(int techStackAppId)
         {
-            var response = new BaseResponse<TechStackAppResponseDto>();
+            var response = new Commons.Bases.BaseEntityResponse<TechStackAppResponseDto>();
 
             try
             {
@@ -152,9 +152,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<bool>> UpdateTechStackApp(int techStackAppId, TechStackAppRequestDto requestDto)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> UpdateTechStackApp(int techStackAppId, TechStackAppRequestDto requestDto)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {

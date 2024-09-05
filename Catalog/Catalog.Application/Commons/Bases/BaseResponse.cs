@@ -2,7 +2,7 @@
 
 namespace Catalog.Application.Commons.Bases
 {
-    public class BaseResponse<T>
+    public class BaseEntityResponse<T>
     {
         public bool IsSuccess { get; set; }
         public T? Data { get; set; }

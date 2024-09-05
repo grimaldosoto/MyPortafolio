@@ -1,27 +1,41 @@
 ﻿using Catalog.Application.Dtos.Category.Request;
 using Catalog.Application.Interfaces;
+using Catalog.Application.Services;
 using Catalog.Infrastructure.Commons.Bases.Request;
+using Catalog.Utilities.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Home.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TechnologyController : ControllerBase
     {
         private readonly ITechnologyApplication _technologyApplication;
+        private readonly IGenerateExcelApplication _generateExcelApplication;
 
-        public TechnologyController(ITechnologyApplication technologyApplication)
+        public TechnologyController(ITechnologyApplication technologyApplication, IGenerateExcelApplication generateExcelApplication)
         {
             _technologyApplication = technologyApplication;
+            _generateExcelApplication = generateExcelApplication;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ReadTechnology([FromBody] BaseFiltersRequest filters)
+        [HttpGet]
+        public async Task<IActionResult> ReadTechnology([FromQuery] BaseFiltersRequest filters)
         {
-            return Ok(await _technologyApplication.ReadTechnologies(filters));
+
+            var response = await _technologyApplication.ReadTechnologies(filters);
+
+            if ((bool)filters.Download!)
+            {
+                var columnNames = ExcelColumnNames.GetColumnTechnology();
+                var fileBytes = _generateExcelApplication.GenerateToExcel(response.Data!, columnNames);
+
+                return File(fileBytes, ContentType.ContentTypeExcel);
+            }
+            return Ok(response);
         }
 
         [HttpGet("select")]

@@ -8,13 +8,13 @@ namespace Catalog.Application.Interfaces
 {
     public interface ITechnologyApplication
     {
-        Task<BaseResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto);
-        Task<BaseResponse<BaseEntityResponse<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters);
-        Task<BaseResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto); 
-        Task<BaseResponse<bool>> DeleteTechnology(int technologyId);
+        Task<Commons.Bases.BaseEntityResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto);
+        Task<Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters);
+        Task<Commons.Bases.BaseEntityResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto); 
+        Task<Commons.Bases.BaseEntityResponse<bool>> DeleteTechnology(int technologyId);
 
-        Task<BaseResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies();
-        Task<BaseResponse<TechnologyResponseDto>> TechnologyById(int technologyId);
+        Task<Commons.Bases.BaseEntityResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies();
+        Task<Commons.Bases.BaseEntityResponse<TechnologyResponseDto>> TechnologyById(int technologyId);
     }
 
 }

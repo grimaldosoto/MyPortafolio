@@ -26,9 +26,9 @@ namespace Catalog.Application.Services
             _validatorRules = validatorRules;
         }
 
-        public async Task<BaseResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {
@@ -67,9 +67,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<BaseEntityResponse<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters)
+        public async Task<Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters)
         {
-            var response = new BaseResponse<BaseEntityResponse<TechnologyResponseDto>>();
+            var response = new Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>();
 
             try
             {
@@ -83,7 +83,7 @@ namespace Catalog.Application.Services
                 }
 
                 response.IsSuccess = true;
-                response.Data = _mapper.Map<BaseEntityResponse<TechnologyResponseDto>>(technologies);
+                response.Data = _mapper.Map<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>(technologies);
                 response.Message = ReplyMessage.MESSAGE_QUERY;
             }
             catch (Exception ex)
@@ -95,9 +95,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<BaseResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {
@@ -135,9 +135,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<BaseResponse<bool>> DeleteTechnology(int technologyId)
+        public async Task<Commons.Bases.BaseEntityResponse<bool>> DeleteTechnology(int technologyId)
         {
-            var response = new BaseResponse<bool>();
+            var response = new Commons.Bases.BaseEntityResponse<bool>();
 
             try
             {
@@ -172,9 +172,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies()
+        public async Task<Commons.Bases.BaseEntityResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies()
         {
-            var response = new BaseResponse<IEnumerable<TechnologySelectResponseDto>>();
+            var response = new Commons.Bases.BaseEntityResponse<IEnumerable<TechnologySelectResponseDto>>();
             try
             {
                 var technologies = await _unitOfWork.Technology.GetAllAsync();
@@ -198,9 +198,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<BaseResponse<TechnologyResponseDto>> TechnologyById(int technologyId)
+        public async Task<Commons.Bases.BaseEntityResponse<TechnologyResponseDto>> TechnologyById(int technologyId)
         {
-            var response = new BaseResponse<TechnologyResponseDto>();
+            var response = new Commons.Bases.BaseEntityResponse<TechnologyResponseDto>();
             try
             {
                 var tecnology = await _unitOfWork.Technology.GetByIdAsync(technologyId);

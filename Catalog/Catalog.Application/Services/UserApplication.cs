@@ -27,9 +27,9 @@ namespace Catalog.Application.Services
             _configuration = configuration;
         }
 
-        public async Task<BaseResponse<bool>> CreateUser(UserRequestDto requestDto)
+        public async Task<BaseEntityResponse<bool>> CreateUser(UserRequestDto requestDto)
         {
-            var response = new BaseResponse<bool>();
+            var response = new BaseEntityResponse<bool>();
             try
             {
                 var account = _mapper.Map<User>(requestDto);
@@ -63,9 +63,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<string>> GenerateToken(TokenRequestDto requestDto)
+        public async Task<BaseEntityResponse<string>> GenerateToken(TokenRequestDto requestDto)
         {
-            var response = new BaseResponse<string>();
+            var response = new BaseEntityResponse<string>();
 
             try
             {

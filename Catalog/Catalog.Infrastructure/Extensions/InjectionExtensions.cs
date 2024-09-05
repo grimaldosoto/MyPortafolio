@@ -1,4 +1,5 @@
-﻿using Catalog.Infrastructure.FileStorage;
+﻿using Catalog.Infrastructure.FileExcel;
+using Catalog.Infrastructure.FileStorage;
 using Catalog.Infrastructure.Persistences.Contexts;
 using Catalog.Infrastructure.Persistences.Interfaces;
 using Catalog.Infrastructure.Persistences.Repositories;
@@ -25,6 +26,8 @@ namespace Catalog.Infrastructure.Extensions
             services.AddTransient<IUnitOfWork,UnitOfWork>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IAzureStorage, AzureStorage>();
+
+            services.AddTransient<IGenerateExcel, GenerateExcel>();
 
             return services;
         }

@@ -25,6 +25,8 @@ namespace Catalog.Application.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddWatchDog(configuration);
 
+            services.AddScoped<IGenerateExcelApplication, GenerateExcelApplication>();
+
             services.AddScoped<ITechnologyApplication, TechnologyApplication>();
             services.AddScoped<IUserApplication,UserApplication>();
             services.AddScoped<ITechStackAppApplication, TechStackAppApplication>();
