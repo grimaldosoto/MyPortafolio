@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
+using Catalog.Application.Commons.Bases.Response;
 using Catalog.Application.Dtos.TechStackApp.Request;
 using Catalog.Application.Dtos.TechStackApp.Response;
 using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Commons.Bases.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catalog.Application.Mappers
 {
@@ -26,8 +21,6 @@ namespace Catalog.Application.Mappers
                 .ForMember(x => x.VersionTechnology, x => x.MapFrom(y => y.Technology.Version))
                 .ReverseMap();
 
-            CreateMap<BaseEntityResponse<TechStackApp>, BaseEntityResponse<TechStackAppResponseDto>>()
-                .ReverseMap();
 
             CreateMap<TechStackAppRequestDto, TechStackApp>();
         }

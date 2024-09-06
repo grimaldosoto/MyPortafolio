@@ -1,9 +1,7 @@
-﻿using Catalog.Application.Dtos.Category.Request;
+﻿using Catalog.Application.Commons.Bases.Request;
+using Catalog.Application.Dtos.Category.Request;
 using Catalog.Application.Interfaces;
-using Catalog.Application.Services;
-using Catalog.Infrastructure.Commons.Bases.Request;
 using Catalog.Utilities.Static;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Home.API.Controllers

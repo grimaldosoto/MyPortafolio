@@ -1,4 +1,4 @@
-﻿namespace Catalog.Infrastructure.Commons.Bases.Request
+﻿namespace Catalog.Application.Commons.Bases.Request
 {
     public class BaseFiltersRequest : BasePaginationRequest
     {

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using Catalog.Application.Commons.Bases;
+using Catalog.Application.Commons.Bases.Response;
 using Catalog.Application.Dtos.User.Request;
 using Catalog.Application.Interfaces;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.FileStorage;
 using Catalog.Infrastructure.Persistences.Interfaces;
 using Catalog.Utilities.Static;
 using Microsoft.Extensions.Configuration;
@@ -19,17 +20,22 @@ namespace Catalog.Application.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IAzureStorage _azureStorage;
 
-        public UserApplication(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
+        public UserApplication(IUnitOfWork unitOfWork, 
+            IMapper mapper, 
+            IConfiguration configuration,
+            IAzureStorage azureStorage)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configuration = configuration;
+            _azureStorage = azureStorage;
         }
 
-        public async Task<BaseEntityResponse<bool>> CreateUser(UserRequestDto requestDto)
+        public async Task<BaseResponse<bool>> CreateUser(UserRequestDto requestDto)
         {
-            var response = new BaseEntityResponse<bool>();
+            var response = new BaseResponse<bool>();
             try
             {
                 var account = _mapper.Map<User>(requestDto);
@@ -37,7 +43,7 @@ namespace Catalog.Application.Services
 
                 if (requestDto.Image is not null)
                 {
-                    account.Image = await _unitOfWork.Storage.SaveFile(AzureContainers.USERS, requestDto.Image);
+                    account.Image = await _azureStorage.SaveFile(AzureContainers.USERS, requestDto.Image);
                 }
 
                 response.Data = await _unitOfWork.User.CreateAsync(account);
@@ -63,9 +69,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<BaseEntityResponse<string>> GenerateToken(TokenRequestDto requestDto)
+        public async Task<BaseResponse<string>> GenerateToken(TokenRequestDto requestDto)
         {
-            var response = new BaseEntityResponse<string>();
+            var response = new BaseResponse<string>();
 
             try
             {

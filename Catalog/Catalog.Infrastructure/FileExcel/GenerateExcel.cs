@@ -1,12 +1,11 @@
-﻿using Catalog.Infrastructure.Commons.Bases.Response;
-using Catalog.Utilities;
+﻿using Catalog.Utilities;
 using ClosedXML.Excel;
 
 namespace Catalog.Infrastructure.FileExcel
 {
     public class GenerateExcel : IGenerateExcel
     {
-        public MemoryStream GenerateToExcel<T>(BaseEntityResponse<T> data, List<TableColumn> columns)
+        public MemoryStream GenerateToExcel<T>(IEnumerable<T> data, List<TableColumn> columns)
         {
             var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Listado");
@@ -17,7 +16,7 @@ namespace Catalog.Infrastructure.FileExcel
             }
             var rowIndex = 2;
 
-            foreach (var item in data.Items!)
+            foreach (var item in data!)
             {
                 for (int i = 0; i < columns.Count; i++)
                 {

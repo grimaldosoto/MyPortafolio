@@ -1,10 +1,7 @@
 ﻿using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Commons.Bases.Request;
-using Catalog.Infrastructure.Helpers;
 using Catalog.Infrastructure.Persistences.Contexts;
 using Catalog.Infrastructure.Persistences.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
 namespace Catalog.Infrastructure.Persistences.Repositories
@@ -37,7 +34,9 @@ namespace Catalog.Infrastructure.Persistences.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _entity.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(id));
+            var response = await _entity.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(id));
+
+            return response!;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -54,19 +53,22 @@ namespace Catalog.Infrastructure.Persistences.Repositories
             return query;
         }
 
-        public IQueryable<TDTO> Ordering<TDTO>(BasePaginationRequest request, IQueryable<TDTO> queryable, bool pagination = false) where TDTO : class
-        {
-            IQueryable<TDTO> queryDto = request.Order == "desc" ? queryable.OrderBy($"{request.Sort} descending") : queryable.OrderBy($"{request.Sort} ascending");
-
-            if (pagination) queryDto = queryDto.Paginate(request);
-
-            return queryDto;
-        }
-
         public async Task<bool> UpdateAsync(T entity)
         {
             _context.Update(entity);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public IQueryable<T> GetAllQueryable()
+        {
+            var getAllQuery = GetEntityQuery();
+            return getAllQuery;
+        }
+
+        public async Task<IEnumerable<T>> GetSelectAllASync()
+        {
+            var getAll = await _entity.AsNoTracking().ToListAsync();
+            return getAll;
         }
     }
 }

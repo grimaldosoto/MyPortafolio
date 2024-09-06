@@ -1,9 +1,8 @@
-﻿using Catalog.Infrastructure.Commons.Bases.Request;
-using System.Linq.Dynamic.Core;
+﻿using Catalog.Application.Commons.Bases.Request;
 
-namespace Catalog.Infrastructure.Helpers
+namespace Catalog.Application.Commons.Ordering
 {
-    public static class QueryableHelpers
+    public static class  PaginateQuery
     {
         public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, BasePaginationRequest request)
         {

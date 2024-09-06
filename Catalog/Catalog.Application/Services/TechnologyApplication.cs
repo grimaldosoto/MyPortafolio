@@ -1,14 +1,15 @@
-﻿using Catalog.Application.Commons.Bases;
-using Catalog.Application.Interfaces;
-using Catalog.Application.Validators.Technology;
-using AutoMapper;
-using Catalog.Domain.Entities;
-using Catalog.Infrastructure.Commons.Bases.Request;
-using Catalog.Infrastructure.Commons.Bases.Response;
-using Catalog.Infrastructure.Persistences.Interfaces;
-using Catalog.Utilities.Static;
+﻿using AutoMapper;
+using Catalog.Application.Commons.Bases.Request;
+using Catalog.Application.Commons.Bases.Response;
+using Catalog.Application.Commons.Ordering;
 using Catalog.Application.Dtos.Category.Request;
 using Catalog.Application.Dtos.Category.Response;
+using Catalog.Application.Interfaces;
+using Catalog.Application.Validators.Technology;
+using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Persistences.Interfaces;
+using Catalog.Utilities.Static;
+using Microsoft.EntityFrameworkCore;
 using WatchDog;
 
 namespace Catalog.Application.Services
@@ -18,22 +19,27 @@ namespace Catalog.Application.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly TechnologyValidator _validatorRules;
+        private readonly IOrderingQuery _orderingQuery;
 
-        public TechnologyApplication(IUnitOfWork unitOfWork, IMapper mapper, TechnologyValidator validatorRules)
+        public TechnologyApplication(IUnitOfWork unitOfWork,
+            IMapper mapper,
+            TechnologyValidator validatorRules,
+            IOrderingQuery orderingQuery)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _validatorRules = validatorRules;
+            _orderingQuery = orderingQuery;
         }
 
-        public async Task<Commons.Bases.BaseEntityResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto)
+        public async Task<BaseResponse<bool>> CreateTechnology(TechnologyRequestDto requestDto)
         {
-            var response = new Commons.Bases.BaseEntityResponse<bool>();
+            var response = new BaseResponse<bool>();
 
             try
             {
                 var validationResult = await _validatorRules.ValidateAsync(requestDto);
-                
+
                 if (!validationResult.IsValid)
                 {
                     response.IsSuccess = false;
@@ -66,25 +72,38 @@ namespace Catalog.Application.Services
 
             return response;
         }
-
-        public async Task<Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters)
+        public async Task<BaseResponse<IEnumerable<TechnologyResponseDto>>> ReadTechnologies(BaseFiltersRequest filters)
         {
-            var response = new Commons.Bases.BaseEntityResponse<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>();
+            var response = new BaseResponse<IEnumerable<TechnologyResponseDto>>();
 
             try
             {
-                var technologies = await _unitOfWork.Technology.ReadTechnologies(filters);
+                var technologies = _unitOfWork.Technology.GetAllQueryable();
 
-                if (technologies is null)
+                // ==> Filtros
+                // Filtro por Nombre o Descripción
+                if (filters.NumFilter is not null && !string.IsNullOrEmpty(filters.TextFilter))
                 {
-                    response.IsSuccess = false;
-                    response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
-                    return response;
+                    switch (filters.NumFilter)
+                    {
+                        case 1:
+                            technologies = technologies.Where(x => x.Name!.Contains(filters.TextFilter));
+                            break;
+                        case 2:
+                            technologies = technologies.Where(x => x.Description!.Contains(filters.TextFilter));
+                            break;
+                    }
                 }
+                // Ordenamiento por default TechnologyID
+                if (filters.Sort is null) filters.Sort = "Id";
+                var items = await _orderingQuery.Ordering(filters, technologies, !(bool)filters.Download!).ToListAsync();
+                // ==> EndFiltros
 
                 response.IsSuccess = true;
-                response.Data = _mapper.Map<Infrastructure.Commons.Bases.Response.BaseEntityResponse<TechnologyResponseDto>>(technologies);
+                response.TotalRecords = await technologies.CountAsync();
+                response.Data = _mapper.Map<IEnumerable<TechnologyResponseDto>>(items);
                 response.Message = ReplyMessage.MESSAGE_QUERY;
+
             }
             catch (Exception ex)
             {
@@ -95,9 +114,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<Commons.Bases.BaseEntityResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto)
+        public async Task<BaseResponse<bool>> UpdateTechnology(int technologyId, TechnologyRequestDto requestDto)
         {
-            var response = new Commons.Bases.BaseEntityResponse<bool>();
+            var response = new BaseResponse<bool>();
 
             try
             {
@@ -135,9 +154,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<Commons.Bases.BaseEntityResponse<bool>> DeleteTechnology(int technologyId)
+        public async Task<BaseResponse<bool>> DeleteTechnology(int technologyId)
         {
-            var response = new Commons.Bases.BaseEntityResponse<bool>();
+            var response = new BaseResponse<bool>();
 
             try
             {
@@ -172,9 +191,9 @@ namespace Catalog.Application.Services
             return response;
         }
 
-        public async Task<Commons.Bases.BaseEntityResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies()
+        public async Task<BaseResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies()
         {
-            var response = new Commons.Bases.BaseEntityResponse<IEnumerable<TechnologySelectResponseDto>>();
+            var response = new BaseResponse<IEnumerable<TechnologySelectResponseDto>>();
             try
             {
                 var technologies = await _unitOfWork.Technology.GetAllAsync();
@@ -198,9 +217,9 @@ namespace Catalog.Application.Services
 
             return response;
         }
-        public async Task<Commons.Bases.BaseEntityResponse<TechnologyResponseDto>> TechnologyById(int technologyId)
+        public async Task<BaseResponse<TechnologyResponseDto>> TechnologyById(int technologyId)
         {
-            var response = new Commons.Bases.BaseEntityResponse<TechnologyResponseDto>();
+            var response = new BaseResponse<TechnologyResponseDto>();
             try
             {
                 var tecnology = await _unitOfWork.Technology.GetByIdAsync(technologyId);
@@ -209,7 +228,7 @@ namespace Catalog.Application.Services
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
-                    
+
                     return response;
                 }
 
