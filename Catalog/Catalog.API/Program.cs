@@ -1,6 +1,8 @@
 using Catalog.API.Extensions;
 using Catalog.Application.Extensions;
 using Catalog.Infrastructure.Extensions;
+using Catalog.Infrastructure.Persistences.Contexts;
+using Microsoft.EntityFrameworkCore;
 using WatchDog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,7 @@ var Cors = "Cors";
 builder.Services.AddInjectionInfrastructure(configuration);
 builder.Services.AddInjectionApplication(configuration);
 builder.Services.AddAuthentication(configuration);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,6 +41,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    await app.MigrateDbAsync();
+
 }
 
 app.UseWatchDogExceptionLogger();

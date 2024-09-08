@@ -31,5 +31,7 @@ namespace Catalog.Infrastructure.Extensions
 
             return services;
         }
+
+       
     }
 }

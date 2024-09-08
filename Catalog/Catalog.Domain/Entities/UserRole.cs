@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Catalog.Domain.Entities
+﻿namespace Catalog.Domain.Entities
 {
     public partial class UserRole
     {
@@ -9,7 +6,6 @@ namespace Catalog.Domain.Entities
         public int? RoleId { get; set; }
         public int? UserId { get; set; }
         public int? State { get; set; }
-        public int? BranchOfficeId { get; set; }
 
         public virtual Role? Role { get; set; }
         public virtual User? User { get; set; }
