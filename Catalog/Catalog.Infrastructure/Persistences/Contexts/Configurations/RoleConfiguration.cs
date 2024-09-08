@@ -15,6 +15,9 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
         {
             builder.ToTable("Roles", "MyPortafolio");
 
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).HasColumnName("RoleId");
+
             builder.Property(e => e.Description)
                 .HasMaxLength(50)
                 .IsUnicode(false);

@@ -1,11 +1,6 @@
 ﻿using Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
 {
@@ -13,8 +8,11 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<MenuRole> builder)
         {
-            builder.HasKey(e => e.MenuRolId)
+
+            builder.HasKey(e => e.Id)
                    .HasName("PK__MenuRole__6640AD0C12D20D75");
+
+            builder.Property(e => e.Id).HasColumnName("MenuRolId");
 
             builder.ToTable("MenuRoles", "MyPortafolio");
 

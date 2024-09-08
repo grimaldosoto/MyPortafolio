@@ -23,7 +23,14 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                     ReleaseDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Version = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false),
                     RepositoryLink = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    LiveLink = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true)
+                    LiveLink = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,7 +48,13 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                     Icon = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     URL = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: true),
                     FatherId = table.Column<int>(type: "int", nullable: true),
-                    State = table.Column<int>(type: "int", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -56,7 +69,13 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                     RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    State = table.Column<int>(type: "int", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,7 +91,14 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     Version = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
-                    Description = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true)
+                    Description = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,13 +116,13 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                     Password = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     Email = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     Image = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    State = table.Column<int>(type: "int", nullable: true),
-                    AuditCreateUser = table.Column<int>(type: "int", nullable: false),
-                    AuditCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AuditUpdateUser = table.Column<int>(type: "int", nullable: true),
-                    AuditUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AuditDeleteUser = table.Column<int>(type: "int", nullable: true),
-                    AuditDeleteDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -112,7 +138,13 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: true),
                     MenuId = table.Column<int>(type: "int", nullable: true),
-                    State = table.Column<int>(type: "int", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -139,7 +171,14 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                     TechStackAppID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppID = table.Column<int>(type: "int", nullable: false),
-                    TechnologyID = table.Column<int>(type: "int", nullable: false)
+                    TechnologyID = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -167,8 +206,13 @@ namespace Catalog.Infrastructure.Persistences.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    State = table.Column<int>(type: "int", nullable: true),
-                    BranchOfficeId = table.Column<int>(type: "int", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

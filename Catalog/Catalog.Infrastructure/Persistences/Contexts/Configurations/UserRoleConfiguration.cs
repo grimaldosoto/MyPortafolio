@@ -15,6 +15,10 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
         {
             builder.ToTable("UserRoles", "MyPortafolio");
 
+            builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Id).HasColumnName("UserRoleId");
+
             builder.HasOne(d => d.Role)
                 .WithMany(p => p.UserRoles)
                 .HasForeignKey(d => d.RoleId)

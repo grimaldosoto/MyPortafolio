@@ -15,6 +15,8 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
         {
             builder.ToTable("Users", "MyPortafolio");
 
+            builder.HasKey(e => e.Id);
+
             builder.Property(e => e.Id).HasColumnName("UserId");
 
             builder.Property(e => e.Email).IsUnicode(false);

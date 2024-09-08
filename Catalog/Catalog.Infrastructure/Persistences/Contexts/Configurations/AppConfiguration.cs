@@ -11,7 +11,8 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
 
             builder.ToTable("App", "MyPortafolio");
 
-            builder.Property(e => e.AppId).HasColumnName("AppID");
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).HasColumnName("AppID");
 
             builder.Property(e => e.LiveLink)
                 .HasMaxLength(255)

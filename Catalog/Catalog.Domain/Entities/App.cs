@@ -1,13 +1,12 @@
 ﻿namespace Catalog.Domain.Entities
 {
-    public partial class App
+    public partial class App : BaseEntity
     {
         public App()
         {
             TechStackApps = new HashSet<TechStackApp>();
         }
 
-        public int AppId { get; set; }
         public string Name { get; set; } = null!;
         public DateTime ReleaseDate { get; set; }
         public string Version { get; set; } = null!;

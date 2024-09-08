@@ -15,6 +15,9 @@ namespace Catalog.Infrastructure.Persistences.Contexts.Configurations
         {
             builder.ToTable("Menus", "MyPortafolio");
 
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).HasColumnName("MenuId");
+
             builder.Property(e => e.Icon)
                 .HasMaxLength(50)
                 .IsUnicode(false);
