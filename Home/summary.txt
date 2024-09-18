@@ -1,0 +1,29 @@
+Referencias del proyecto.
+
++ Home.API
+	:: References con Projectos
+		- Home.Application.UseCase
+	::NuGet
+
++ Home.Application.UseCase
+	:: References con Projectos
+		- Home.Domain
+		- Home.Application.Dtos
+		- Home.Application.Interface
+	::NuGet
+		- AutoMapper
+		- AutoMapper.Extensions.Microsoft.DependencyInjection
+		- MediatR
+		- MediatR.Extensions.Microsoft.DependencyInjection
+		- FluentValidation.DependencyInjectionExtensions
+
++ Home.Persistence
+	:: References con Projectos
+		- Home.Application.Interface
+	::NuGet
+		- Dapper
+
++ Home.Infrastructure
+	:: References con Projectos
+		- Home.Application.Interface
+	::NuGet

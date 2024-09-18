@@ -44,23 +44,24 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{FBDD3EC1-125E-485A-B5A4-28BF657DF4CE}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Pictures\Screenshots\clean_architecture.png = ..\..\..\Pictures\Screenshots\clean_architecture.png
+		Home\summary.txt = Home\summary.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Domain", "Home\Home.Domain\Home.Domain.csproj", "{08F9BDE4-9EC3-4636-B7A3-7E4EDED4B879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Domain", "Home\Home.Domain\Home.Domain.csproj", "{08F9BDE4-9EC3-4636-B7A3-7E4EDED4B879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Infrastructure", "Home\Home.Infrastructure\Home.Infrastructure.csproj", "{E7320198-60C6-4FE0-8CC8-1E7B6606D077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Infrastructure", "Home\Home.Infrastructure\Home.Infrastructure.csproj", "{E7320198-60C6-4FE0-8CC8-1E7B6606D077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Persistences", "Home\Home.Persistences\Home.Persistences.csproj", "{E44E07B3-BD23-4CFF-8684-603915774ED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Persistences", "Home\Home.Persistences\Home.Persistences.csproj", "{E44E07B3-BD23-4CFF-8684-603915774ED7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.API", "Home\Home.API\Home.API.csproj", "{569531B2-4FC9-4EAD-A2DC-88D3D54A4EF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Application.Dtos", "Home\Home.Application.Dtos\Home.Application.Dtos.csproj", "{1327CA5F-5030-4BA4-88B1-594C22FBDA51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Application.Dtos", "Home\Home.Application.Dtos\Home.Application.Dtos.csproj", "{1327CA5F-5030-4BA4-88B1-594C22FBDA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Application.Interface", "Home\Home.Application.Interface\Home.Application.Interface.csproj", "{2BF1F4FC-795E-4C44-8392-6F7D577CA009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Application.Interface", "Home\Home.Application.Interface\Home.Application.Interface.csproj", "{2BF1F4FC-795E-4C44-8392-6F7D577CA009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Application.UseCase", "Home\Home.Application.UseCase\Home.Application.UseCase.csproj", "{A8979505-220B-481A-8C20-2D54B1EE143D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Application.UseCase", "Home\Home.Application.UseCase\Home.Application.UseCase.csproj", "{A8979505-220B-481A-8C20-2D54B1EE143D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Utilities", "Home\Home.Utilities\Home.Utilities.csproj", "{6BDCA614-DA4F-4759-B641-A5AA5EE47CA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.Utilities", "Home\Home.Utilities\Home.Utilities.csproj", "{6BDCA614-DA4F-4759-B641-A5AA5EE47CA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{82C2574A-65AE-4516-A401-41A4E18224C3}"
 EndProject
