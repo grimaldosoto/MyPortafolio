@@ -1,0 +1,41 @@
+Referencias del proyecto.
+
++ Catalog.API
+	:: References con Projectos
+		- Catalog.Application
+		- Catalog.Infrastructure
+		- Catalog.Utilities
+	::NuGet
+		- Microsoft.AspNetCore.Authentication.JwtBearer
+		- Microsoft.EntityFrameworkCore.Design
+		- Swashbuckle.AspNetCore
+
++ Catalog.Application
+	:: References con Projectos
+		- Catalog.Domain
+		- Catalog.Infrastucture
+		- Catalog.Utilities
+	::NuGet
+		- AutoMapper
+		- AutoMapper.Extensions.Microsoft.DependencyInjection
+		- Azure.Storage.Blobs
+		- BCrypt.Net
+		- FluentValidation.AspNetCore
+		- WatchDog.NET
+
++ Catalog.Domain
+	:: References con Projectos
+		
+	::NuGet
+		- Microsoft.EntityFrameworkCore.SqlServer
+		- Microsoft.EntityFrameworkCore.Tools
+
++ Catalog.Persistence
+	:: References con Projectos
+		- Catalog.Domain
+		- Catalog.Utilities
+	::NuGet
+		- Azure.Storage.Blobs
+		- ClosedXML
+		- System.Linq.Dynamic.Core
+		- Microsoft.AspNetCore.Http

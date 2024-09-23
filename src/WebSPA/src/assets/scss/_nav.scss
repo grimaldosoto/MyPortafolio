@@ -1,0 +1,14 @@
+.nav{
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-semi);
+
+  &_menu {
+    @media screen and (max-width: 767px){
+
+    }
+  }
+
+}

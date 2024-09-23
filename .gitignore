@@ -485,3 +485,15 @@ $RECYCLE.BIN/
 *.db
 /Catalog/Catalog.API/appsettings.json
 /Catalog/Catalog.API/appsettings.Development.json
+Home/Home.API/appsettings.json
+Home/Home.API/appsettings.Development.json
+Home/Home.API/appsettings.Development.json
+Secrets.txt
+src/Catalog/Catalog.API/appsettings.json
+src/Catalog/Catalog.API/appsettings.Development.json
+Secrets.txt
+src/Catalog/commands.txt
+src/Home/Home.API/appsettings.json
+src/Home/Home.API/appsettings.Development.json
+src/PhraseOfTheDay/appsettings.json
+src/PhraseOfTheDay/appsettings.Development.json

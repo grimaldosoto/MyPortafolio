@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+:root{
+  --header-height: 3rem;
+  --font-semi: 600;
+
+  --body-font: "Poppins", sans-serif;
+
+  --big-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+  --smaller-font-size: 0.75rem;
+
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+
+  --mb-2: 1rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+
+  --z-back: -10;
+  --z-fixed: 100;
+  --z-tooltip: 10;
+
+  --white-color: #fff;
+  --black-color: hsl(210, 12%, 15%);
+  --body-color: hsl(210, 16%, 12%);
+  --container-color: hsl(210, 24%, 8%);
+
+
+  @media screen and (min-width: 968px) {
+    --big-font-size: 3.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: 0.875rem;
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--second-color);
+  //background: radial-gradient(#2b3329, #0d0d0d);
+  background: var(--bg-color);
+
+}
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+button,
+input {
+  border: none;
+  outline: none;
+
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+
+}
+
+
+/*===== CLASS CSS ===== */
+.section__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-2);
+  text-align: center;
+}
+.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 64px;
+    height: 0.18rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 2rem;
+    background-color: var(--first-color);
+  }
+}
+.section {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/*===== LAYOUT =====*/
+.grid {
+  display: grid;
+}
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+.l-header {
+  width: 100%;
+
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+}
+.containers {
+  max-width: 968px;
+  margin-left: var(--mb-1-5);
+  margin-right: var(--mb-1-5);
+}
