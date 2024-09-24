@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Catalog.Application.Commons.Bases.Response;
-using Catalog.Application.Dtos.Category.Request;
-using Catalog.Application.Dtos.Category.Response;
+using Catalog.Application.Dtos.Technology.Request;
+using Catalog.Application.Dtos.Technology.Response;
 using Catalog.Domain.Entities;
 
 namespace Catalog.Application.Mappers

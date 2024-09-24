@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
-      <ProjectReference Include="..\Catalog.Utilities\Catalog.Utilities.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
       <PackageReference Include="ClosedXML" Version="0.102.3" />
       <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
       <PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+      <ProjectReference Include="..\Catalog.Utilities\Catalog.Utilities.csproj" />
     </ItemGroup>
 
 </Project>

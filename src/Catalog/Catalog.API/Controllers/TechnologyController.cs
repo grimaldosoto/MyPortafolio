@@ -1,5 +1,5 @@
 ﻿using Catalog.Application.Commons.Bases.Request;
-using Catalog.Application.Dtos.Category.Request;
+using Catalog.Application.Dtos.Technology.Request;
 using Catalog.Application.Interfaces;
 using Catalog.Utilities.Static;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,6 @@ namespace Home.API.Controllers
         [HttpGet]
         public async Task<IActionResult> ReadTechnology([FromQuery] BaseFiltersRequest filters)
         {
-
             var response = await _technologyApplication.ReadTechnologies(filters);
 
             if ((bool)filters.Download!)

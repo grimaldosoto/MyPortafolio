@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.Dtos.Category.Response
+﻿namespace Catalog.Application.Dtos.Technology.Response
 {
     public class TechnologySelectResponseDto
     {

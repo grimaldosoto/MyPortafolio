@@ -14,4 +14,10 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Home.Application.Dtos\Home.Application.Dtos.csproj" />
+    <ProjectReference Include="..\Home.Application.Interface\Home.Application.Interface.csproj" />
+    <ProjectReference Include="..\Home.Domain\Home.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

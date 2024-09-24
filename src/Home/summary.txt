@@ -22,6 +22,9 @@ Referencias del proyecto.
 		- Home.Application.Interface
 	::NuGet
 		- Dapper
+		- Microsoft.Extensions.Configuration
+		- Microsoft.Data.SqlClient
+		- Microsoft.Extensions.DependencyInjection
 
 + Home.Infrastructure
 	:: References con Projectos

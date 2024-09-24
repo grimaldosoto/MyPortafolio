@@ -1,7 +1,7 @@
 ﻿using Catalog.Application.Commons.Bases.Request;
 using Catalog.Application.Commons.Bases.Response;
-using Catalog.Application.Dtos.Category.Request;
-using Catalog.Application.Dtos.Category.Response;
+using Catalog.Application.Dtos.Technology.Request;
+using Catalog.Application.Dtos.Technology.Response;
 
 namespace Catalog.Application.Interfaces
 {

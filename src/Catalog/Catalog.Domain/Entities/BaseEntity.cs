@@ -8,7 +8,7 @@
         public DateTime CreatedOn { get; set; }
         public string LastModifiedBy { get; set; } = string.Empty;
         public DateTime LastModifiedOn { get; set; }
-        public string DeletedBy { get; set; } = string.Empty;
+        public string? DeletedBy { get; set; }
         public DateTime? DeletedOn { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 using Catalog.Application.Commons.Bases.Request;
 using Catalog.Application.Commons.Bases.Response;
 using Catalog.Application.Commons.Ordering;
-using Catalog.Application.Dtos.Category.Request;
-using Catalog.Application.Dtos.Category.Response;
+using Catalog.Application.Dtos.Technology.Request;
+using Catalog.Application.Dtos.Technology.Response;
 using Catalog.Application.Interfaces;
 using Catalog.Application.Validators.Technology;
 using Catalog.Domain.Entities;
@@ -50,6 +50,8 @@ namespace Catalog.Application.Services
                 }
 
                 var technology = _mapper.Map<Technology>(requestDto);
+                technology.CreatedOn = DateTime.Now;
+                technology.LastModifiedOn = DateTime.Now;
                 response.Data = await _unitOfWork.Technology.CreateAsync(technology);
 
                 if (response.Data)
@@ -78,7 +80,7 @@ namespace Catalog.Application.Services
 
             try
             {
-                var technologies = _unitOfWork.Technology.GetAllQueryable();
+                var technologies = _unitOfWork.Technology.GetAllQueryable().Where(t => t.IsActive);
 
                 // ==> Filtros
                 // Filtro por Nombre o Descripción
@@ -190,7 +192,6 @@ namespace Catalog.Application.Services
 
             return response;
         }
-
         public async Task<BaseResponse<IEnumerable<TechnologySelectResponseDto>>> ListSelectTechnologies()
         {
             var response = new BaseResponse<IEnumerable<TechnologySelectResponseDto>>();
