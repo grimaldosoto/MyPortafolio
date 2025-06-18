@@ -14,7 +14,7 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
@@ -24,13 +24,13 @@
       "dom"
     ],
     "paths": {
-      "@core/*":[
+      "@core/*": [
         "src/app/core/*"
       ],
-      "@shared/*":[
+      "@shared/*": [
         "src/app/shared/*"
       ],
-      "@views/*":[
+      "@views/*": [
         "src/app/views/*"
       ]
     }
