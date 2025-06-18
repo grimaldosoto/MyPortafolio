@@ -4,10 +4,10 @@ import {Observable} from "rxjs";
 import {Phrase} from "@core/interfaces/phrase.interface";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styles: [
-  ]
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styles: [],
+    standalone: false
 })
 export class FooterComponent{
   /*phrase!:Phrase;

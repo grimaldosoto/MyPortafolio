@@ -3,10 +3,10 @@ import {Phrase} from "@core/interfaces/phrase.interface";
 import {PhraseService} from "@shared/services/phrase.service";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styles: [
-  ]
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styles: [],
+    standalone: false
 })
 export class HomeComponent {
   phrase!: Phrase;
